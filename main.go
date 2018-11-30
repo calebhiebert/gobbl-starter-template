@@ -21,11 +21,17 @@ import (
 var StaticBox *packr.Box
 
 func main() {
+	assetDir := "./assets"
+
+	if os.Getenv("ASSETS_DIRECTORY") != "" {
+		assetDir = os.Getenv("ASSETS_DIRECTORY")
+	}
+
 	bundle := i18n.Bundle{
 		DefaultLanguage: language.English,
 	}
 	bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
-	bundle.MustLoadMessageFile("./assets/lang/en-US.json")
+	bundle.MustLoadMessageFile(assetDir + "/lang/en-US.json")
 
 	localizationConfig := &glocalize.LocalizationConfig{
 		Bundle: &bundle,
