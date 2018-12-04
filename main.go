@@ -20,6 +20,9 @@ import (
 // StaticBox is a packr box containing static files
 var StaticBox *packr.Box
 
+// FileBox is a packr box containing static files
+var FileBox *packr.Box
+
 func main() {
 	assetDir := "./assets"
 
@@ -38,6 +41,7 @@ func main() {
 	}
 
 	StaticBox = packr.New("StaticBox", "assets/static")
+	FileBox = packr.New("FileBox", "assets")
 
 	gobblr := gbl.New()
 

@@ -36,3 +36,7 @@
 [prune]
   go-tests = true
   unused-packages = true
+
+[[constraint]]
+  name = "upper.io/db.v3"
+  version = "3.5.5"

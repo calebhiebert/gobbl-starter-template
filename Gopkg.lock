@@ -367,6 +367,17 @@
   pruneopts = "UT"
   revision = "a5b47d31c556af34a302ce5d659e6fea44d90de0"
 
+[[projects]]
+  digest = "1:b1186fc8a0c80fb2b3fcb1b7313d69b386e755bb412ab6338ad9580499d38bca"
+  name = "upper.io/db.v3"
+  packages = [
+    ".",
+    "internal/immutable",
+  ]
+  pruneopts = "UT"
+  revision = "d2cc681b38f69e957b8aeaed84ac923be21b08d0"
+  version = "v3.5.5"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
@@ -381,6 +392,7 @@
     "github.com/gobuffalo/packr/v2",
     "github.com/nicksnyder/go-i18n/v2/i18n",
     "golang.org/x/text/language",
+    "upper.io/db.v3",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
