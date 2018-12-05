@@ -144,7 +144,14 @@ func main() {
 		port = "8080"
 	}
 
+	/*
+		WORKER CHECK
+		****************************************
+		To enable "worker" mode (for long running tasks), just start the
+		bot with the argument "worker"
+	*/
 	if len(os.Args) >= 2 && os.Args[1] == "worker" {
+		// TODO add some lovely worker activities
 		fmt.Println("Doing Work")
 	} else {
 		r := gin.Default()
