@@ -21,22 +21,21 @@ RUN packr2
 RUN dep ensure --vendor-only
 
 # Build the app
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix nocgo -ldflags="-w -s" -o /go/bin/bot
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 && go build -a -installsuffix nocgo -ldflags="-w -s" -o /go/bin/bot
+
+RUN cd /go/bin && find
 
 # Start from a scratch container for a nice and small image
-FROM scratch
+FROM alpine:3.8
+
+# Install ca-certificates for calling https endpoints
+RUN apk add --no-cache ca-certificates && mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 
 # Copy the binary build
 COPY --from=build /go/bin/bot /go/bin/bot
 
 # Copy the password file (with the bot user) from the build container
 COPY --from=build /etc/passwd /etc/passwd
-
-# Copy assets
-COPY ./assets /go/bin/assets
-
-# Set the assets directory
-ENV ASSETS_DIRECTORY "/go/bin/assets"
 
 # Set the user to the previously created user
 USER bot

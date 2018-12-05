@@ -7,6 +7,7 @@ import (
 
 	"github.com/calebhiebert/gobbl"
 	"github.com/calebhiebert/gobbl-localization"
+	"github.com/calebhiebert/gobbl-starter-bot/bdb"
 	"github.com/calebhiebert/gobbl/context"
 	"github.com/calebhiebert/gobbl/luis"
 	"github.com/calebhiebert/gobbl/messenger"
@@ -24,24 +25,33 @@ var StaticBox *packr.Box
 var FileBox *packr.Box
 
 func main() {
-	assetDir := "./assets"
+	StaticBox = packr.New("StaticBox", "assets/static")
+	FileBox = packr.New("FileBox", "assets")
 
-	if os.Getenv("ASSETS_DIRECTORY") != "" {
-		assetDir = os.Getenv("ASSETS_DIRECTORY")
+	dbase, err := bdb.New()
+	if err != nil {
+		panic(err)
+	}
+
+	sql, err := FileBox.FindString("schema.sql")
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = dbase.Exec(sql)
+	if err != nil {
+		panic(err)
 	}
 
 	bundle := i18n.Bundle{
 		DefaultLanguage: language.English,
 	}
 	bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
-	bundle.MustLoadMessageFile(assetDir + "/lang/en-US.json")
+	bundle.MustParseMessageFileBytes(FileBox.Bytes("lang/en-US.json"), "en-US.json")
 
 	localizationConfig := &glocalize.LocalizationConfig{
 		Bundle: &bundle,
 	}
-
-	StaticBox = packr.New("StaticBox", "assets/static")
-	FileBox = packr.New("FileBox", "assets")
 
 	gobblr := gbl.New()
 
@@ -50,6 +60,7 @@ func main() {
 		****************************************
 		The MarkSeenMiddleware is specific to facebook messenger
 	*/
+	gobblr.Use(bdb.Middleware(dbase))
 	gobblr.Use(gbl.ResponderMiddleware())
 	gobblr.Use(gbl.UserExtractionMiddleware())
 	gobblr.Use(gbl.RequestExtractionMiddleware())
@@ -57,6 +68,8 @@ func main() {
 	gobblr.Use(sess.Middleware(sess.MemoryStore()))
 	gobblr.Use(bctx.Middleware())
 	gobblr.Use(glocalize.Middleware(localizationConfig))
+	gobblr.Use(UUserExtractorMiddleware())
+	gobblr.Use(UUserActionLoggerMiddleware())
 
 	/*
 		LUIS SETUP
@@ -121,35 +134,41 @@ func main() {
 		port = "8080"
 	}
 
-	r := gin.Default()
+	if len(os.Args) >= 2 && os.Args[1] == "worker" {
+		fmt.Println("Doing Work")
+	} else {
+		r := gin.Default()
 
-	r.GET("/webhook", func(c *gin.Context) {
-		mode := c.Query("hub.mode")
-		token := c.Query("hub.verify_token")
-		challenge := c.Query("hub.challenge")
+		r.Use(bdb.GinMiddleware(dbase))
 
-		if mode == "subscribe" && token == messengerIntegration.VerifyToken {
-			c.String(200, challenge)
-		} else {
-			c.AbortWithStatus(401)
-		}
-	})
+		r.GET("/webhook", func(c *gin.Context) {
+			mode := c.Query("hub.mode")
+			token := c.Query("hub.verify_token")
+			challenge := c.Query("hub.challenge")
 
-	r.POST("/webhook", func(c *gin.Context) {
-		var webhookRequest fb.WebhookRequest
+			if mode == "subscribe" && token == messengerIntegration.VerifyToken {
+				c.String(200, challenge)
+			} else {
+				c.AbortWithStatus(401)
+			}
+		})
 
-		err := c.ShouldBindJSON(&webhookRequest)
-		if err != nil {
-			fmt.Println("WEBHOOK PARSE ERR", err)
-			c.JSON(500, gin.H{"error": "Invalid json"})
-		} else {
-			_ = messengerIntegration.ProcessWebhookRequest(&webhookRequest)
+		r.POST("/webhook", func(c *gin.Context) {
+			var webhookRequest fb.WebhookRequest
 
-			c.JSON(200, gin.H{"o": "k"})
-		}
-	})
+			err := c.ShouldBindJSON(&webhookRequest)
+			if err != nil {
+				fmt.Println("WEBHOOK PARSE ERR", err)
+				c.JSON(500, gin.H{"error": "Invalid json"})
+			} else {
+				_ = messengerIntegration.ProcessWebhookRequest(&webhookRequest)
 
-	r.StaticFS("/static", StaticBox)
+				c.JSON(200, gin.H{"o": "k"})
+			}
+		})
 
-	r.Run("0.0.0.0:" + port)
+		r.StaticFS("/static", StaticBox)
+
+		r.Run("0.0.0.0:" + port)
+	}
 }
