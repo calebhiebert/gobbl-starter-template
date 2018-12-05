@@ -9,11 +9,11 @@ import (
 	"github.com/calebhiebert/gobbl-localization"
 	"github.com/calebhiebert/gobbl-starter-bot/bdb"
 	"github.com/calebhiebert/gobbl/context"
-	"github.com/calebhiebert/gobbl/luis"
 	"github.com/calebhiebert/gobbl/messenger"
 	"github.com/calebhiebert/gobbl/session"
 	"github.com/gin-gonic/gin"
 	"github.com/gobuffalo/packr/v2"
+	_ "github.com/joho/godotenv/autoload"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"golang.org/x/text/language"
 )
@@ -47,6 +47,14 @@ func main() {
 		DefaultLanguage: language.English,
 	}
 	bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
+
+	/*
+		LOAD LANGUAGE FILES
+		****************************************
+		This is where language files are loaded. To add more files,
+		just add more lines like this one. If you wanted to add lang/fr-CA.json:
+		bundle.MustParseMessageFileBytes(FileBox.Bytes("lang/fr-CA.json"), "fr-CA.json")
+	*/
 	bundle.MustParseMessageFileBytes(FileBox.Bytes("lang/en-US.json"), "en-US.json")
 
 	localizationConfig := &glocalize.LocalizationConfig{
@@ -75,16 +83,18 @@ func main() {
 		LUIS SETUP
 		****************************************
 		Uncomment to enable LUIS integration
+		Also uncomment the line requring the LUIS middleware (109)
 	*/
-	louie, err := luis.New(os.Getenv("LUIS_ENDPOINT"))
-	if err != nil {
-		panic(err)
-	}
+	// louie, err := luis.New(os.Getenv("LUIS_ENDPOINT"))
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	/*
 		ROUTER SETUP
 		****************************************
-		Routers in this project are package-global and used here
+		Defined routers are here. This setup should work for most projects,
+		but new routers can easily be added.
 	*/
 	textRouter := gbl.TextRouter()
 	ictxRouter := bctx.ContextIntentRouter()
@@ -96,7 +106,7 @@ func main() {
 
 	// LUIS is added at this point so that if any of our text routes match
 	// we can skip the NLP process becuase we don't need to know the intent
-	gobblr.Use(luis.Middleware(louie))
+	// gobblr.Use(luis.Middleware(louie))
 
 	gobblr.Use(intentRouter.Middleware())
 	gobblr.Use(ictxRouter.Middleware())

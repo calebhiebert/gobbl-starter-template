@@ -174,9 +174,12 @@
   version = "v1.0"
 
 [[projects]]
-  digest = "1:ecd9aa82687cf31d1585d4ac61d0ba180e42e8a6182b85bd785fcca8dfeefc1b"
+  digest = "1:1f4b55d7c57681ad91b7ce3ac7c8e7b139e6dd2f477c5f87e6a7749d298645dc"
   name = "github.com/joho/godotenv"
-  packages = ["."]
+  packages = [
+    ".",
+    "autoload",
+  ]
   pruneopts = "UT"
   revision = "23d116af351c84513e1946b527c88823e476be13"
   version = "v1.3.0"
@@ -204,6 +207,17 @@
   pruneopts = "UT"
   revision = "5c8c8bd35d3832f5d134ae1e1e375b69a4d25242"
   version = "v1.0.1"
+
+[[projects]]
+  digest = "1:8ef506fc2bb9ced9b151dafa592d4046063d744c646c1bbe801982ce87e4bc24"
+  name = "github.com/lib/pq"
+  packages = [
+    ".",
+    "oid",
+  ]
+  pruneopts = "UT"
+  revision = "4ded0e9383f75c197b3a2aaa6d590ac52df6fd79"
+  version = "v1.0.0"
 
 [[projects]]
   branch = "master"
@@ -368,11 +382,19 @@
   revision = "a5b47d31c556af34a302ce5d659e6fea44d90de0"
 
 [[projects]]
-  digest = "1:b1186fc8a0c80fb2b3fcb1b7313d69b386e755bb412ab6338ad9580499d38bca"
+  digest = "1:cc4a324b8d105af2f2926301c4d5f36e0b40caec54dd0852506af56c6cb80936"
   name = "upper.io/db.v3"
   packages = [
     ".",
+    "internal/cache",
+    "internal/cache/hashstructure",
     "internal/immutable",
+    "internal/sqladapter",
+    "internal/sqladapter/compat",
+    "internal/sqladapter/exql",
+    "lib/reflectx",
+    "lib/sqlbuilder",
+    "postgresql",
   ]
   pruneopts = "UT"
   revision = "d2cc681b38f69e957b8aeaed84ac923be21b08d0"
@@ -390,9 +412,12 @@
     "github.com/calebhiebert/gobbl/session",
     "github.com/gin-gonic/gin",
     "github.com/gobuffalo/packr/v2",
+    "github.com/joho/godotenv/autoload",
     "github.com/nicksnyder/go-i18n/v2/i18n",
     "golang.org/x/text/language",
     "upper.io/db.v3",
+    "upper.io/db.v3/lib/sqlbuilder",
+    "upper.io/db.v3/postgresql",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
