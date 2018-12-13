@@ -6,3 +6,26 @@ LUIS_ENDPOINT=
 
 # The URL where this server is being hosted
 SELF_HOST=
+
+# Database access variables
+DB_HOST=
+DB_NAME=
+DB_PASSWORD=
+DB_USERNAME=
+DB_SSL=false
+
+# Whether or not in-bot developer tools are enabled
+ENABLE_DEV_TOOLS=true
+
+# What level of log statements to print
+LOG_LEVEL=50
+
+# Prints the logs with colors, can be funky on some terminals
+LOG_COLORS=true
+
+# The password to connect to redis, can be left blank for development
+REDIS_PASSWORD=
+REDIS_ADDRESS=localhost:6379
+
+# Tells the bot to set the messenger profile on startup, see u-profile.go
+MESSENGER_PROFILE=true

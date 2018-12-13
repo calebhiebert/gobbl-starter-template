@@ -10,18 +10,25 @@
   version = "v0.3.1"
 
 [[projects]]
+  digest = "1:0b526472ea38c27f3f5fb7d4fac576a9a0f49ff0160f2426fc1638a25b1a4d44"
+  name = "github.com/avast/retry-go"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "7e261362c3c12cecc863202c96253ad29daa34f2"
+  version = "2.0.0"
+
+[[projects]]
   branch = "master"
-  digest = "1:05fdb0c67fad6ae468e899f5fe65ecab40d0d8d2b79450517369c46ee56e0c41"
+  digest = "1:d21d40ff5d5b8714dba2b141a3d6aab33763e0fda261a7c5e66af7488ec3998a"
   name = "github.com/calebhiebert/gobbl"
   packages = [
     ".",
     "context",
-    "luis",
     "messenger",
     "session",
   ]
   pruneopts = "UT"
-  revision = "e66244cfac206b1d88b9da472fff70570ba6273c"
+  revision = "6159a190704353e0bb8f00c8d4be1c7d0c3e9c7e"
 
 [[projects]]
   branch = "master"
@@ -30,6 +37,14 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "15fe7107c210436cefd09c8c38e6aad1e434ae75"
+
+[[projects]]
+  branch = "master"
+  digest = "1:fcd09baed945632401fbee51e30dee231330412db053a569b5d119658e690b3a"
+  name = "github.com/calebhiebert/gobbl-redis-store"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "6aa8b368608a2d4e44065fcd29d54aae70e15f31"
 
 [[projects]]
   branch = "master"
@@ -53,23 +68,40 @@
   version = "v1.3.0"
 
 [[projects]]
-  digest = "1:2eca846517f1bafae99c3c81f6bfbb3c503c3caeb022dee250beb291c00001aa"
+  digest = "1:34a9a60fade37f8009ed4a19e02924198aba3eabfcc120ee5c6002b7de17212d"
+  name = "github.com/go-redis/redis"
+  packages = [
+    ".",
+    "internal",
+    "internal/consistenthash",
+    "internal/hashtag",
+    "internal/pool",
+    "internal/proto",
+    "internal/singleflight",
+    "internal/util",
+  ]
+  pruneopts = "UT"
+  revision = "b3d9bf10f6666b2ee5100a6f3f84f4caf3b4e37d"
+  version = "v6.14.2"
+
+[[projects]]
+  digest = "1:fefde31ecdde09fbb287ddb7df7a82f3b9987319c31d0429a66fc17aa98578de"
   name = "github.com/gobuffalo/buffalo-plugins"
   packages = [
     "plugins",
     "plugins/plugdeps",
   ]
   pruneopts = "UT"
-  revision = "bc39d68df10a169179a1d10e542ae100cabd273b"
-  version = "v1.8.1"
+  revision = "3c6e974193d8e8b1466fa3c720df62eb83832495"
+  version = "v1.9.0"
 
 [[projects]]
-  digest = "1:07829a6a0523929f5edc92b2a2dbb05ef3f335780bac9f06c44aa27c6cfc467a"
+  digest = "1:bd342004ef1bb83bee8709e2ad630e47a95d069f7fcb60ee1b8bceb4bbbe14ae"
   name = "github.com/gobuffalo/envy"
   packages = ["."]
   pruneopts = "UT"
-  revision = "7e7ddcbb431d1d9e32121d7eeee8d68bdecd7081"
-  version = "v1.6.10"
+  revision = "801d7253ade1f895f74596b9a96147ed2d3b087e"
+  version = "v1.6.11"
 
 [[projects]]
   digest = "1:162c24dc1a7b2a487e5bfe99be2e7f66dfa2ae5605235504dd6962df00e3e9fd"
@@ -81,18 +113,18 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:8d77dba62e39e710f9e71f6c6405c45000b17011291339360b7411fa92e43390"
+  digest = "1:ee24ebbe62128c02924bb336d1e1334ec7fde2ee34f66b16ea74a93ade722c57"
   name = "github.com/gobuffalo/flect"
   packages = [
     ".",
     "name",
   ]
   pruneopts = "UT"
-  revision = "47375f6d832895843594c60e150fc0a2d2ef87df"
+  revision = "24a2b68e0316dd16128e820c3d60c89ed09911b0"
 
 [[projects]]
   branch = "master"
-  digest = "1:c98fd0d0ed6d071c97309085c5537f6465d8b06e0e18cfaf015e59b99f13bb91"
+  digest = "1:38d124c2f02b17553ae5d3ce7d5d093835602049ade576b86d24472e6b14b3f6"
   name = "github.com/gobuffalo/genny"
   packages = [
     ".",
@@ -101,7 +133,7 @@
     "movinglater/gotools/gomods",
   ]
   pruneopts = "UT"
-  revision = "77e34f71ba2ad9b0020daeba22574f8b87218347"
+  revision = "e26c8466f14d166c788e19ae99c5f077f9ea160b"
 
 [[projects]]
   branch = "master"
@@ -129,14 +161,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:a5b87cc8e6e9d842be6bcf371991b47ca2a15ca2b763f620518ab37d841a78c6"
+  digest = "1:3617620c7cbc54dc84ab1f674ca021c1a9f49eeaa98ff81ceb202a626c7b9c66"
   name = "github.com/gobuffalo/packd"
   packages = ["."]
   pruneopts = "UT"
-  revision = "311c6248e5fbdcd13b3ce364f00073506d8154e6"
+  revision = "eca3b8fd66872a76119b189bbe0f58f776a2a39f"
 
 [[projects]]
-  digest = "1:39d62bfe670eb1567a37d6b096fcd0a9093443bb5f01457d71f799f2d4eea632"
+  digest = "1:8822adc88da999b7214a08db6111f128ca772c82555ef0bda076844211d38793"
   name = "github.com/gobuffalo/packr"
   packages = [
     "v2",
@@ -147,8 +179,8 @@
     "v2/plog",
   ]
   pruneopts = "UT"
-  revision = "ba3c3ae9169fdc7b283f00a4b4c39346e444871c"
-  version = "v1.21.5"
+  revision = "679459352e18b4c74274a979d695fe13b68730c1"
+  version = "v1.21.9"
 
 [[projects]]
   branch = "master"
@@ -159,11 +191,12 @@
   revision = "558ac7de985fc4f4057bff27c7bdf99e92fe0750"
 
 [[projects]]
-  digest = "1:6ba96a683441984156b05568b9d31dbc846d3336d21ac220fcc819a367dc1f65"
+  digest = "1:97df918963298c287643883209a2c3f642e6593379f97ab400c2a2e219ab647d"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   pruneopts = "UT"
-  revision = "5a0f697c9ed9d68fef0116532c6e05cfeae00e55"
+  revision = "aa810b61a9c79d51363740d207bb46cf8e620ed5"
+  version = "v1.2.0"
 
 [[projects]]
   digest = "1:870d441fe217b8e689d7949fef6e43efbc787e50f200cb1e70dbca9204a1d6be"
@@ -174,31 +207,28 @@
   version = "v1.0"
 
 [[projects]]
-  digest = "1:1f4b55d7c57681ad91b7ce3ac7c8e7b139e6dd2f477c5f87e6a7749d298645dc"
+  digest = "1:ecd9aa82687cf31d1585d4ac61d0ba180e42e8a6182b85bd785fcca8dfeefc1b"
   name = "github.com/joho/godotenv"
-  packages = [
-    ".",
-    "autoload",
-  ]
+  packages = ["."]
   pruneopts = "UT"
   revision = "23d116af351c84513e1946b527c88823e476be13"
   version = "v1.3.0"
 
 [[projects]]
-  digest = "1:9a855f51d5eaf25dafc30cf0ad5844d5fb6aacec4ceb98a04ed2964562edbc0c"
+  digest = "1:3e551bbb3a7c0ab2a2bf4660e7fcad16db089fdcfbb44b0199e62838038623ea"
   name = "github.com/json-iterator/go"
   packages = ["."]
   pruneopts = "UT"
-  revision = "36b14963da70d11297d313183d7e6388c8510e1e"
-  version = "1.0.0"
+  revision = "1624edc4454b8682399def8740d46db5e4362ba4"
+  version = "v1.1.5"
 
 [[projects]]
   digest = "1:3a3029532366b517900dc8c3e0ea032bf35d913bfac330876dc3efbf177bd6d3"
   name = "github.com/karrick/godirwalk"
   packages = ["."]
   pruneopts = "UT"
-  revision = "2de2192f9e35ce981c152a873ed943b93b79ced4"
-  version = "v1.7.5"
+  revision = "cceff240ca8af695e41738831646717e80d2f846"
+  version = "v1.7.7"
 
 [[projects]]
   digest = "1:0a69a1c0db3591fcefb47f115b224592c8dfa4368b7ba9fae509d5e16cdc95c8"
@@ -229,11 +259,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:598aa4555d1ea05a7b949e31e7db0e7b2df21f8772c53cc42f6543dc6bf9a35a"
+  digest = "1:6e2ed1bdbf1d14b4d0be58bcd3f1c3000c1e226964354457b8e6ca69e83a1cbb"
   name = "github.com/markbates/oncer"
   packages = ["."]
   pruneopts = "UT"
-  revision = "05fccaae8fc423476d98fd4c3e4699ba0fbbde48"
+  revision = "bf2de49a0be218916e69a11d22866e6cd0a560f2"
 
 [[projects]]
   digest = "1:28687e854cec240942c103259668b132a8450b05a6cc677eea2282b26ae29310"
@@ -252,11 +282,28 @@
   revision = "eab626deece6c9806cfbe2290859eb31a934edb0"
 
 [[projects]]
-  digest = "1:fa610f9fe6a93f4a75e64c83673dfff9bf1a34bbb21e6102021b6bc7850834a3"
+  digest = "1:0981502f9816113c9c8c4ac301583841855c8cf4da8c72f696b3ebedf6d0e4e5"
   name = "github.com/mattn/go-isatty"
   packages = ["."]
   pruneopts = "UT"
-  revision = "57fdcb988a5c543893cc61bce354a6e24ab70022"
+  revision = "6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c"
+  version = "v0.0.4"
+
+[[projects]]
+  digest = "1:33422d238f147d247752996a26574ac48dcf472976eda7f5134015f06bf16563"
+  name = "github.com/modern-go/concurrent"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94"
+  version = "1.0.3"
+
+[[projects]]
+  digest = "1:e32bdbdb7c377a07a9a46378290059822efdce5c8d96fe71940d87cb4f918855"
+  name = "github.com/modern-go/reflect2"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "4b7aa43c6742a2c18fdef89dd197aaae7dac7ccd"
+  version = "1.0.1"
 
 [[projects]]
   digest = "1:c0feb3014ad00e3c2fc6a59fa6448f2a59f6a6bc2a0c7f026939a7a8a50792cb"
@@ -315,11 +362,23 @@
   version = "v1.0.3"
 
 [[projects]]
-  digest = "1:c268acaa4a4d94a467980e5e91452eb61c460145765293dc0aed48e5e9919cc6"
+  digest = "1:03aa6e485e528acb119fb32901cf99582c380225fc7d5a02758e08b180cb56c3"
   name = "github.com/ugorji/go"
   packages = ["codec"]
   pruneopts = "UT"
-  revision = "c88ee250d0221a57af388746f5cf03768c21d6e2"
+  revision = "b4c50a2b199d93b13dc15e78929cfb23bfdf21ab"
+  version = "v1.1.1"
+
+[[projects]]
+  digest = "1:b77a6808d2479a400579eb8d3bf18bd5c884fa8f038f3a1ce77a47c15bb17e2c"
+  name = "github.com/vmihailenco/msgpack"
+  packages = [
+    ".",
+    "codes",
+  ]
+  pruneopts = "UT"
+  revision = "c4fc0fcdd500af473157759b6d73f935e727ec77"
+  version = "v4.0.1"
 
 [[projects]]
   branch = "master"
@@ -327,18 +386,26 @@
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
   pruneopts = "UT"
-  revision = "eb0de9b17e854e9b1ccd9963efafc79862359959"
+  revision = "505ab145d0a99da450461ae2c1a9f6cd10d1f447"
 
 [[projects]]
   branch = "master"
-  digest = "1:0c7cb58af944f9690af91474a75371eecfe54c1ce3771a8dc08924430ee785d3"
+  digest = "1:76ee51c3f468493aff39dbacc401e8831fbb765104cbf613b89bef01cf4bad70"
+  name = "golang.org/x/net"
+  packages = ["context"]
+  pruneopts = "UT"
+  revision = "610586996380ceef02dd726cc09df7e00a3f8e56"
+
+[[projects]]
+  branch = "master"
+  digest = "1:21d0d5a534afd0c16c486a72e2dde75b62463938b7517ec8fbc4f98e088465fa"
   name = "golang.org/x/sys"
   packages = [
     "unix",
     "windows",
   ]
   pruneopts = "UT"
-  revision = "4ed8d59d0b35e1e29334a206d1b3f38b1e5dfb31"
+  revision = "586ba8c9bb141bbbea1ffb47b201443fd43385dd"
 
 [[projects]]
   digest = "1:17ad89bd57485e11f306d41b703f53089fb0803682707b21fe9b3b29467d37a0"
@@ -355,7 +422,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:6511064c08bff306dd24fa83ea82e160009fa7572240b70173b25d1dbc3e1872"
+  digest = "1:a04cdd871724a339249269e3a0d2e723e755f1c9c0cc851eb2ea47595ae83ff7"
   name = "golang.org/x/tools"
   packages = [
     "go/ast/astutil",
@@ -364,25 +431,44 @@
     "internal/gopathwalk",
   ]
   pruneopts = "UT"
-  revision = "895048a75ecf3ee9bb32121d21f2f4bf20d96fb3"
+  revision = "c779628d65d906060a998dc805c44579faba21bb"
 
 [[projects]]
-  digest = "1:1b4724d3c8125f6044925f02b485b74bfec9905cbf579d95aafd1a6c8f8447d3"
+  digest = "1:7ee462ecfb8793686a33b2d09f0c738d8773680bb6ea228123a0edd3b21b1011"
+  name = "google.golang.org/appengine"
+  packages = [
+    ".",
+    "datastore",
+    "internal",
+    "internal/app_identity",
+    "internal/base",
+    "internal/datastore",
+    "internal/log",
+    "internal/modules",
+    "internal/remote_api",
+  ]
+  pruneopts = "UT"
+  revision = "4a4468ece617fc8205e99368fa2200e9d1fad421"
+  version = "v1.3.0"
+
+[[projects]]
+  digest = "1:cbc72c4c4886a918d6ab4b95e347ffe259846260f99ebdd8a198c2331cf2b2e9"
   name = "gopkg.in/go-playground/validator.v8"
   packages = ["."]
   pruneopts = "UT"
-  revision = "5f57d2222ad794d0dffb07e664ea05e2ee07d60c"
-  version = "v8.18.1"
+  revision = "5f1438d3fca68893a817e4a66806cea46a9e4ebf"
+  version = "v8.18.2"
 
 [[projects]]
-  digest = "1:cacb98d52c60c337c2ce95a7af83ba0313a93ce5e73fa9e99a96aff70776b9d3"
+  digest = "1:4d2e5a73dc1500038e504a8d78b986630e3626dc027bc030ba5c75da257cdb96"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
   pruneopts = "UT"
-  revision = "a5b47d31c556af34a302ce5d659e6fea44d90de0"
+  revision = "51d6538a90f86fe93ac480b35f37b2be17fef232"
+  version = "v2.2.2"
 
 [[projects]]
-  digest = "1:cc4a324b8d105af2f2926301c4d5f36e0b40caec54dd0852506af56c6cb80936"
+  digest = "1:9673c03e1f34676de81ff2903ed54c191d27ceaa0ae6e8976683be270bdc1705"
   name = "upper.io/db.v3"
   packages = [
     ".",
@@ -397,22 +483,25 @@
     "postgresql",
   ]
   pruneopts = "UT"
-  revision = "d2cc681b38f69e957b8aeaed84ac923be21b08d0"
-  version = "v3.5.5"
+  revision = "1edc03ac1472c11fc8b13334a6b844d6dbd0f3dd"
+  version = "v3.5.6"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/avast/retry-go",
     "github.com/calebhiebert/gobbl",
     "github.com/calebhiebert/gobbl-localization",
+    "github.com/calebhiebert/gobbl-redis-store",
     "github.com/calebhiebert/gobbl/context",
-    "github.com/calebhiebert/gobbl/luis",
     "github.com/calebhiebert/gobbl/messenger",
     "github.com/calebhiebert/gobbl/session",
     "github.com/gin-gonic/gin",
+    "github.com/go-redis/redis",
     "github.com/gobuffalo/packr/v2",
-    "github.com/joho/godotenv/autoload",
+    "github.com/joho/godotenv",
+    "github.com/matoous/go-nanoid",
     "github.com/nicksnyder/go-i18n/v2/i18n",
     "golang.org/x/text/language",
     "upper.io/db.v3",

@@ -4,16 +4,19 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/calebhiebert/gobbl"
 	"github.com/calebhiebert/gobbl-localization"
+	"github.com/calebhiebert/gobbl-redis-store"
 	"github.com/calebhiebert/gobbl-starter-bot/bdb"
 	"github.com/calebhiebert/gobbl/context"
 	"github.com/calebhiebert/gobbl/messenger"
 	"github.com/calebhiebert/gobbl/session"
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis"
 	"github.com/gobuffalo/packr/v2"
-	_ "github.com/joho/godotenv/autoload"
+	"github.com/joho/godotenv"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"golang.org/x/text/language"
 )
@@ -25,6 +28,8 @@ var StaticBox *packr.Box
 var FileBox *packr.Box
 
 func main() {
+	godotenv.Load(".env")
+
 	StaticBox = packr.New("StaticBox", "assets/static")
 	FileBox = packr.New("FileBox", "assets")
 
@@ -55,11 +60,21 @@ func main() {
 		just add more lines like this one. If you wanted to add lang/fr-CA.json:
 		bundle.MustParseMessageFileBytes(FileBox.Bytes("lang/fr-CA.json"), "fr-CA.json")
 	*/
-	bundle.MustParseMessageFileBytes(FileBox.Bytes("lang/en-US.json"), "en-US.json")
+	langENUS, err := FileBox.Find("lang/en-US.json")
+	if err != nil {
+		panic(err)
+	}
+
+	bundle.MustParseMessageFileBytes(langENUS, "en-US.json")
 
 	localizationConfig := &glocalize.LocalizationConfig{
 		Bundle: &bundle,
 	}
+
+	redisStore := gobblredis.New(&redis.Options{
+		Addr:     os.Getenv("REDIS_ADDRESS"),
+		Password: os.Getenv("REDIS_PASSWORD"),
+	}, 20*time.Minute, "session:")
 
 	gobblr := gbl.New()
 
@@ -73,7 +88,7 @@ func main() {
 	gobblr.Use(gbl.UserExtractionMiddleware())
 	gobblr.Use(gbl.RequestExtractionMiddleware())
 	gobblr.Use(fb.MarkSeenMiddleware())
-	gobblr.Use(sess.Middleware(sess.MemoryStore()))
+	gobblr.Use(sess.Middleware(redisStore))
 	gobblr.Use(bctx.Middleware())
 	gobblr.Use(glocalize.Middleware(localizationConfig))
 	gobblr.Use(UUserExtractorMiddleware())
@@ -115,10 +130,22 @@ func main() {
 	gobblr.Use(HDefaultFallback)
 
 	/*
+		DEV TOOLS
+		****************************************
+		These routes are only enabled when the ENABLE_DEV_TOOLS environment
+		variable is set to "true"
+	*/
+	if os.Getenv("ENABLE_DEV_TOOLS") == "true" {
+		textRouter.Text(TCID, HGetID)
+		textRouter.Text(TCDeleteData, HDeleteUserData)
+	}
+
+	/*
 		ROUTE SETUP
 		****************************************
 		All the project routes are defined here
 	*/
+
 	// Text Routes
 	textRouter.Text("GET_STARTED", HGetStarted)
 
@@ -135,7 +162,12 @@ func main() {
 	}
 
 	if os.Getenv("MESSENGER_PROFILE") == "true" {
-		USetMessengerProfile(mapi)
+		res, err := USetMessengerProfile(mapi)
+		if err != nil {
+			panic(err)
+		} else {
+			fmt.Println("Messenger Profile", res)
+		}
 	}
 
 	port := os.Getenv("PORT")

@@ -54,5 +54,11 @@ func getDBSettings() postgresql.ConnectionURL {
 		settings.User = username
 	}
 
+	if os.Getenv("DB_SSL") == "true" {
+		settings.Options = map[string]string{
+			"sslmode": "require",
+		}
+	}
+
 	return settings
 }

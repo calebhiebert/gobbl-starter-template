@@ -1,6 +1,10 @@
 package bdb
 
-import "time"
+import (
+	"time"
+
+	"github.com/avast/retry-go"
+)
 
 // UserAction represents the user_actions table in the database
 type UserAction struct {
@@ -18,43 +22,51 @@ type UserAction struct {
 // CreateUserActionButton will create a user action with the ButtonName
 // property filled in
 func (d *DBSession) CreateUserActionButton(psid, button, payload string) error {
-	_, err := d.InsertInto("user_actions").
-		Columns("user_id", "button", "payload").
-		Values(psid, button, payload).
-		Exec()
+	return retry.Do(func() error {
+		_, err := d.InsertInto("user_actions").
+			Columns("user_id", "button", "payload").
+			Values(psid, button, payload).
+			Exec()
 
-	return err
+		return err
+	})
 }
 
 // CreateUserActionQR will create a user action with the QuickReply
 // property filled in
 func (d *DBSession) CreateUserActionQR(psid, qr, payload string) error {
-	_, err := d.InsertInto("user_actions").
-		Columns("user_id", "quick_reply", "payload").
-		Values(psid, qr, payload).
-		Exec()
+	return retry.Do(func() error {
+		_, err := d.InsertInto("user_actions").
+			Columns("user_id", "quick_reply", "payload").
+			Values(psid, qr, payload).
+			Exec()
 
-	return err
+		return err
+	})
 }
 
 // CreateUserActionMessage will create a user action with the Message
 // property filled in
 func (d *DBSession) CreateUserActionMessage(psid, message string) error {
-	_, err := d.InsertInto("user_actions").
-		Columns("user_id", "message").
-		Values(psid, message).
-		Exec()
+	return retry.Do(func() error {
+		_, err := d.InsertInto("user_actions").
+			Columns("user_id", "message").
+			Values(psid, message).
+			Exec()
 
-	return err
+		return err
+	})
 }
 
 // CreateUserActionURL will create a user action with the RedirectURL
 // property filled in
 func (d *DBSession) CreateUserActionURL(psid, url string) error {
-	_, err := d.InsertInto("user_actions").
-		Columns("user_id", "url").
-		Values(psid, url).
-		Exec()
+	return retry.Do(func() error {
+		_, err := d.InsertInto("user_actions").
+			Columns("user_id", "url").
+			Values(psid, url).
+			Exec()
 
-	return err
+		return err
+	})
 }

@@ -12,7 +12,13 @@ git clone https://github.com/calebhiebert/gobbl-starter-template
 
 #### 2. Update Imports
 
-There are 2 places in the code where imports need to be updated for the `bdb` package. `main.go` and `u-user.go`. The import `"github.com/calebhiebert/gobbl-starter-bot/bdb"` will need to be changed to reflect the location where this project was cloned. For example, if you placed this project into `$GOPATH/src/github.com/john/awsomebot`, then your import will change to `"github.com/john/awesomebot"`.
+There are some package imports that need to be changed to reflect the locally cloned project (for the `bdb` and `linkr` packages).
+- `main.go`
+- `u-user.go`
+- `gh-linkr.go`
+- `h-dev.go`
+
+The import `"github.com/calebhiebert/gobbl-starter-bot/bdb"` will need to be changed to reflect the location where this project was cloned. For example, if you placed this project into `$GOPATH/src/github.com/john/awsomebot`, then your import will change to `"github.com/john/awesomebot/bdb"`.
 
 #### 3. Environment Setup
 
@@ -59,3 +65,6 @@ This template includes a basic database to track users and user actions within t
 - `PAGE_ACCESS_TOKEN` - The facebook page access token for the page the bot is being hosted on
 - `LUIS_ENDPOINT` - The endpoint url for your LUIS app (if you want to use LUIS)
 - `SELF_HOST` - The host name of the place where the bot is hosted (probably http://localhost:8080 for development)
+- `ENABLE_DEV_TOOLS` - Enables some utility routes within the bot, see h-dev.go
+- `LOG_LEVEL` - The gobbl logging level, should be a numerical value
+- `LOG_COLORS` - Pretty colors
