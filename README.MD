@@ -10,33 +10,19 @@ This is a [GOBBL](https://github.com/calebhiebert/gobbl) facebook messenger bot 
 git clone https://github.com/calebhiebert/gobbl-starter-template
 ```
 
-#### 2. Update Imports
-
-There are some package imports that need to be changed to reflect the locally cloned project (for the `bdb` and `linkr` packages).
-- `main.go`
-- `u-user.go`
-- `gh-linkr.go`
-- `h-dev.go`
-
-The import `"github.com/calebhiebert/gobbl-starter-bot/bdb"` will need to be changed to reflect the location where this project was cloned. For example, if you placed this project into `$GOPATH/src/github.com/john/awsomebot`, then your import will change to `"github.com/john/awesomebot/bdb"`.
-
-#### 3. Environment Setup
+#### 2. Environment Setup
 
 - Create a new file called `.env`
 - Copy the contents of the `env` file into `.env`
 - Fill in the `.env` file
 
-#### 4. External Dependencies
+#### 3. External Dependencies
 
 This starter project comes complete with some database functionality built in. To make the process less cumbersome, a `docker-compose` file is included. Just run `docker-compose up -d` to start up the database.
 
-#### 5. That's It!
+#### 4. That's It!
 
 You should be good to go! Don't forget to update your webhook address on the Facebook app.
-
-#### 6. LUIS
-
-If you would like to use Microsoft LUIS in the project, see line `83` of `main.go`
 
 ## Project Layout
 
@@ -63,7 +49,6 @@ This template includes a basic database to track users and user actions within t
 #### Environment Variables
 
 - `PAGE_ACCESS_TOKEN` - The facebook page access token for the page the bot is being hosted on
-- `LUIS_ENDPOINT` - The endpoint url for your LUIS app (if you want to use LUIS)
 - `SELF_HOST` - The host name of the place where the bot is hosted (probably http://localhost:8080 for development)
 - `ENABLE_DEV_TOOLS` - Enables some utility routes within the bot, see h-dev.go
 - `LOG_LEVEL` - The gobbl logging level, should be a numerical value

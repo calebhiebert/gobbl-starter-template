@@ -1,9 +1,7 @@
 # Start with a golang image
-FROM golang:1.10.3-stretch as build
+FROM golang:1.11-stretch as build
 
-# Install dep
-ADD https://github.com/golang/dep/releases/download/v0.5.0/dep-linux-amd64 /usr/bin/dep
-RUN chmod +x /usr/bin/dep && go get -u github.com/gobuffalo/packr/v2/packr2
+ENV GO111MODULE on
 
 # Create a user to run the app as
 RUN useradd --shell /bin/bash bot
@@ -14,16 +12,11 @@ WORKDIR $GOPATH/src/bot
 # Copy all application files
 COPY . .
 
-# Run the packr
-RUN packr2
-
 # Install packages
-RUN dep ensure --vendor-only
+RUN go get ./... && go get github.com/gobuffalo/packr/v2/packr2 && packr2
 
 # Build the app
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 && go build -a -installsuffix nocgo -ldflags="-w -s" -o /go/bin/bot
-
-RUN cd /go/bin && find
 
 # Start from a scratch container for a nice and small image
 FROM alpine:3.8

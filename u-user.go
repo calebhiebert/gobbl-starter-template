@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"gobbl-starter-bot/bdb"
 
 	"github.com/calebhiebert/gobbl"
-	"github.com/calebhiebert/gobbl-starter-bot/bdb"
 	"github.com/calebhiebert/gobbl/messenger"
 	db "upper.io/db.v3"
 )

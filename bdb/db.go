@@ -1,8 +1,11 @@
 package bdb
 
 import (
+	"fmt"
 	"os"
+	"time"
 
+	retry "github.com/avast/retry-go"
 	"upper.io/db.v3/lib/sqlbuilder"
 	"upper.io/db.v3/postgresql"
 )
@@ -15,13 +18,29 @@ type DBSession struct {
 
 // New creates a new database session
 func New() (*DBSession, error) {
-	sess, err := postgresql.Open(getDBSettings())
+	var dbSess sqlbuilder.Database
+
+	err := retry.Do(
+		func() error {
+			sess, err := postgresql.Open(getDBSettings())
+			if err != nil {
+				return err
+			}
+
+			dbSess = sess
+			return nil
+		},
+		retry.Delay(1*time.Second),
+		retry.OnRetry(func(n uint, err error) {
+			fmt.Printf("retrying database connection %d: %v\n", n, err)
+		}),
+	)
 	if err != nil {
 		return nil, err
 	}
 
 	return &DBSession{
-		Database: sess,
+		Database: dbSess,
 	}, nil
 }
 

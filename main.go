@@ -9,7 +9,6 @@ import (
 	"github.com/calebhiebert/gobbl"
 	"github.com/calebhiebert/gobbl-localization"
 	"github.com/calebhiebert/gobbl-redis-store"
-	"github.com/calebhiebert/gobbl-starter-bot/bdb"
 	"github.com/calebhiebert/gobbl/context"
 	"github.com/calebhiebert/gobbl/messenger"
 	"github.com/calebhiebert/gobbl/session"
@@ -19,6 +18,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"golang.org/x/text/language"
+	"gobbl-starter-bot/bdb"
 )
 
 // StaticBox is a packr box containing static files
@@ -95,17 +95,6 @@ func main() {
 	gobblr.Use(UUserActionLoggerMiddleware())
 
 	/*
-		LUIS SETUP
-		****************************************
-		Uncomment to enable LUIS integration
-		Also uncomment the line requring the LUIS middleware (109)
-	*/
-	// louie, err := luis.New(os.Getenv("LUIS_ENDPOINT"))
-	// if err != nil {
-	// 	panic(err)
-	// }
-
-	/*
 		ROUTER SETUP
 		****************************************
 		Defined routers are here. This setup should work for most projects,
@@ -118,11 +107,6 @@ func main() {
 
 	gobblr.Use(textRouter.Middleware())
 	gobblr.Use(customRouter.Middleware())
-
-	// LUIS is added at this point so that if any of our text routes match
-	// we can skip the NLP process becuase we don't need to know the intent
-	// gobblr.Use(luis.Middleware(louie))
-
 	gobblr.Use(intentRouter.Middleware())
 	gobblr.Use(ictxRouter.Middleware())
 

@@ -1,8 +1,9 @@
 package main
 
 import (
+	"gobbl-starter-bot/bdb"
+
 	"github.com/calebhiebert/gobbl"
-	"github.com/calebhiebert/gobbl-starter-bot/bdb"
 	"github.com/calebhiebert/gobbl/messenger"
 )
 
