@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"gobbl-template/bdb"
 	"os"
 	"time"
 
@@ -18,7 +19,6 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"golang.org/x/text/language"
-	"gobbl-starter-bot/bdb"
 )
 
 // StaticBox is a packr box containing static files

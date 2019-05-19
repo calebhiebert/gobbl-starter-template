@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gobbl-starter-bot/bdb"
+	"gobbl-template/bdb"
 
 	"github.com/calebhiebert/gobbl"
 	"github.com/calebhiebert/gobbl/messenger"

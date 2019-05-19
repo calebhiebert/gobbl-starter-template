@@ -1,10 +1,9 @@
 package main
 
 import (
-	"gobbl-starter-bot/bdb"
-
 	"github.com/calebhiebert/gobbl"
 	"github.com/calebhiebert/gobbl/messenger"
+	"gobbl-template/bdb"
 )
 
 // TCID is what the user should enter to trigger the HGetID handler

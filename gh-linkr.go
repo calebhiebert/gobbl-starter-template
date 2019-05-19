@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"gobbl-starter-bot/linkr"
-
-	"gobbl-starter-bot/bdb"
-
 	"github.com/gin-gonic/gin"
+	"gobbl-template/bdb"
+	"gobbl-template/linkr"
 )
 
 // GHLinkr is a gin handler that can process linkr links
