@@ -48,9 +48,7 @@ func main() {
 		panic(err)
 	}
 
-	bundle := i18n.Bundle{
-		DefaultLanguage: language.English,
-	}
+	bundle := i18n.NewBundle(language.English)
 	bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
 
 	/*
@@ -68,7 +66,7 @@ func main() {
 	bundle.MustParseMessageFileBytes(langENUS, "en-US.json")
 
 	localizationConfig := &glocalize.LocalizationConfig{
-		Bundle: &bundle,
+		Bundle: bundle,
 	}
 
 	redisStore := gobblredis.New(&redis.Options{
