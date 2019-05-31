@@ -5,7 +5,7 @@ import (
 	"gobbl-template/bdb"
 
 	"github.com/calebhiebert/gobbl"
-	"github.com/calebhiebert/gobbl/messenger"
+	"github.com/calebhiebert/gobbl-extra/messenger"
 	db "upper.io/db.v3"
 )
 

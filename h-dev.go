@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/calebhiebert/gobbl"
-	"github.com/calebhiebert/gobbl/messenger"
+	"github.com/calebhiebert/gobbl-extra/messenger"
 	"gobbl-template/bdb"
 )
 

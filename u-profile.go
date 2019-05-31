@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/calebhiebert/gobbl/messenger"
+	"github.com/calebhiebert/gobbl-extra/messenger"
 )
 
 // USetMessengerProfile will set the facebook messenger profile variable

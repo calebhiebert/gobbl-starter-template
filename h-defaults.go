@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/calebhiebert/gobbl"
-	"github.com/calebhiebert/gobbl-localization"
-	"github.com/calebhiebert/gobbl/messenger"
+	"github.com/calebhiebert/gobbl-extra/localization"
+	"github.com/calebhiebert/gobbl-extra/messenger"
 )
 
 // HGetStarted is for when the user first speaks to the bot
