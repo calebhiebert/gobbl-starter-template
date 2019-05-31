@@ -4,11 +4,11 @@ go 1.12
 
 require (
 	github.com/avast/retry-go v2.3.0+incompatible
-	github.com/calebhiebert/gobbl v0.0.1
-	github.com/calebhiebert/gobbl-extra/context v0.0.0-20190531132817-490b8bae01ae
-	github.com/calebhiebert/gobbl-extra/localization v0.0.0-20190531132817-490b8bae01ae
-	github.com/calebhiebert/gobbl-extra/messenger v0.0.0-20190531132817-490b8bae01ae
-	github.com/calebhiebert/gobbl-extra/session v0.0.0-20190531132817-490b8bae01ae
+	github.com/calebhiebert/gobbl v0.0.2
+	github.com/calebhiebert/gobbl-extra/context v0.0.0-20190531134239-5c350020b8e5
+	github.com/calebhiebert/gobbl-extra/localization v0.0.0-20190531134239-5c350020b8e5
+	github.com/calebhiebert/gobbl-extra/messenger v0.0.0-20190531134239-5c350020b8e5
+	github.com/calebhiebert/gobbl-extra/session v0.0.0-20190531134239-5c350020b8e5
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-redis/redis v6.15.2+incompatible
 	github.com/gobuffalo/genny v0.1.1 // indirect
@@ -24,7 +24,6 @@ require (
 	github.com/sirupsen/logrus v1.4.2 // indirect
 	github.com/ugorji/go v1.1.5-pre // indirect
 	golang.org/x/crypto v0.0.0-20190530122614-20be4c3c3ed5 // indirect
-	golang.org/x/sys v0.0.0-20190531132440-69e3a3a65b5b // indirect
 	golang.org/x/text v0.3.2
 	golang.org/x/tools v0.0.0-20190530215528-75312fb06703 // indirect
 	upper.io/db.v3 v3.5.7+incompatible
