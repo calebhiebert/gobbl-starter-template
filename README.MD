@@ -1,6 +1,6 @@
 # Example Bot
 
-This is a [GOBBL](https://github.com/calebhiebert/gobbl) facebook messenger bot template, just clone to get started
+This is a [GOBBL](https://github.com/calebhiebert/gobbl) facebook messenger bot template, follow the instructions below to get started
 
 ## To Run
 
@@ -16,13 +16,23 @@ git clone https://github.com/calebhiebert/gobbl-starter-template
 - Copy the contents of the `env` file into `.env`
 - Fill in the `.env` file
 
-#### 3. External Dependencies
+#### 3. Dependencies
+
+Install go dependency packages
+
+```bash
+go get ./...
+```
 
 This starter project comes complete with some database functionality built in. To make the process less cumbersome, a `docker-compose` file is included. Just run `docker-compose up -d` to start up the database.
 
-#### 4. That's It!
+#### 4. Update Facebook Webhook
 
-You should be good to go! Don't forget to update your webhook address on the Facebook app.
+If using ngrok for example, url would look like this: https://da8d1354.ngrok.io/webhook
+
+#### 5. That's It!
+
+You should be good to go!
 
 ## Project Layout
 

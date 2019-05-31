@@ -2,6 +2,7 @@
 PAGE_ACCESS_TOKEN=
 
 # The URL where this server is being hosted
+# ex: https://da8d1354.ngrok.io
 SELF_HOST=
 
 # Database access variables
@@ -15,9 +16,11 @@ DB_SSL=false
 ENABLE_DEV_TOOLS=true
 
 # What level of log statements to print
+# See https://github.com/calebhiebert/gobbl/wiki/Logging
 LOG_LEVEL=50
 
 # Prints the logs with colors, can be funky on some terminals
+# See https://github.com/calebhiebert/gobbl/wiki/Logging
 LOG_COLORS=true
 
 # The password to connect to redis, can be left blank for development
@@ -26,3 +29,6 @@ REDIS_ADDRESS=localhost:6379
 
 # Tells the bot to set the messenger profile on startup, see u-profile.go
 MESSENGER_PROFILE=true
+
+# Facebook messenger verify token
+VERIFY_TOKEN=frogs

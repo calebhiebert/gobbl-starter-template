@@ -139,7 +139,7 @@ func main() {
 	messengerIntegration := fb.MessengerIntegration{
 		API:         mapi,
 		Bot:         gobblr,
-		VerifyToken: "frogs",
+		VerifyToken: os.Getenv("VERIFY_TOKEN"),
 		DevMode:     true,
 	}
 
@@ -168,6 +168,8 @@ func main() {
 		// TODO add some lovely worker activities
 		fmt.Println("Doing Work")
 	} else {
+		gin.SetMode(gin.ReleaseMode)
+
 		r := gin.Default()
 
 		r.Use(bdb.GinMiddleware(dbase))
